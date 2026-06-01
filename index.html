@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Rincón de Julio | Sabores de Andalucía · Cocina tradicional</title>
+    <meta name="description" content="El Rincón de Julio — Sabores de Andalucía. Cocina tradicional andaluza: rabo de toro, plato alpujarreño, pulpo a la gallega, croquetas caseras y vinos de la tierra en un rincón con encanto.">
+    <meta property="og:title" content="El Rincón de Julio | Sabores de Andalucía">
+    <meta property="og:description" content="Cocina tradicional andaluza con producto de la tierra. Rabo de toro, plato alpujarreño, pulpo a la gallega y croquetas caseras.">
+    <meta property="og:image" content="fachada_el_rincon_de_julio.png">
+    <meta property="og:type" content="restaurant">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* ============================================================
+           TEMA MODIFICABLE  —  CAMBIA SOLO ESTO PARA OTRO CLIENTE
+           (perfil: RESTAURANTE ANDALUZ -> cálido, terracota + oliva + crema)
+           ============================================================ */
+        :root {
+            --brand:      #B23A2E;   /* Terracota / tomate (acento principal) */
+            --brand-dark: #8C2A20;   /* Terracota oscuro (hover) */
+            --accent:     #5E6B3B;   /* Verde oliva (de la fachada) */
+            --bg:         #FBF5EA;   /* Crema cálido (fondo) */
+            --surface:    #FFFFFF;   /* Superficie de tarjetas */
+            --surface-2:  #F3E9D6;   /* Arena cálida (superficie alt.) */
+            --text:       #2B2018;   /* Marrón muy oscuro (texto) */
+            --muted:      #6E6354;   /* Marrón suave (texto secundario) */
+            --font-head:  'Playfair Display', serif;  /* titulares */
+            --font-body:  'Jost', sans-serif;         /* cuerpo */
+        }
+        /* ============================================================ */
+
+        body { background-color: var(--bg); color: var(--text); font-family: var(--font-body); font-weight: 300; }
+        h1,h2,h3,.font-head { font-family: var(--font-head); }
+        html { scroll-behavior: smooth; }
+        .kicker { letter-spacing: 0.3em; text-transform: uppercase; font-size: 0.72rem; font-weight: 500; }
+        .hairline { width: 56px; height: 2px; background: var(--brand); }
+        .overlay { background: linear-gradient(180deg, rgba(30,20,14,.45) 0%, rgba(30,20,14,.45) 40%, rgba(30,20,14,.85) 100%); }
+        .lift { transition: transform .4s ease, box-shadow .4s ease; }
+        .lift:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -18px rgba(30,20,14,.45); }
+        .img-zoom { transition: transform .9s ease; }
+        .group:hover .img-zoom { transform: scale(1.06); }
+        .price-line { background-image: linear-gradient(to right, rgba(110,99,84,.35) 0 4px, transparent 4px); background-size: 8px 1px; background-repeat: repeat-x; background-position: 0 0.9em; }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen antialiased">
+
+<!-- NAV -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300" style="background: transparent;">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="flex items-center justify-between h-20">
+            <a href="#inicio" id="brand-link" class="font-head text-2xl tracking-wide font-semibold text-white transition-colors">
+                El Rincón de <span style="color: var(--brand)" id="brand-accent">Julio</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-9 text-sm" id="nav-links" style="color: #fff;" aria-label="Navegación principal">
+                <a href="#especialidades" class="hover:opacity-70 transition-opacity tracking-wide">Especialidades</a>
+                <a href="#casa" class="hover:opacity-70 transition-opacity tracking-wide">La casa</a>
+                <a href="#carta" class="hover:opacity-70 transition-opacity tracking-wide">Carta</a>
+                <a href="#galeria" class="hover:opacity-70 transition-opacity tracking-wide">Galería</a>
+                <a href="#contacto" class="hover:opacity-70 transition-opacity tracking-wide">Contacto</a>
+            </nav>
+            <a href="tel:+34667880000" class="hidden md:inline-block px-6 py-2.5 text-xs kicker text-white transition-colors" style="background: var(--brand);">Reservar</a>
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-white" aria-label="Abrir menú">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t" style="background: var(--bg); border-color: rgba(178,58,46,.2);">
+        <div class="px-6 py-4 flex flex-col gap-3 text-sm" style="color: var(--text);">
+            <a href="#especialidades" class="py-1.5">Especialidades</a>
+            <a href="#casa" class="py-1.5">La casa</a>
+            <a href="#carta" class="py-1.5">Carta</a>
+            <a href="#galeria" class="py-1.5">Galería</a>
+            <a href="#contacto" class="py-1.5">Contacto</a>
+            <a href="tel:+34667880000" class="mt-2 inline-block text-center px-6 py-2.5 text-xs kicker text-white" style="background: var(--brand);">Reservar</a>
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section id="inicio" class="relative min-h-screen flex items-center">
+    <img src="fachada_el_rincon_de_julio.png" alt="Fachada y terraza de El Rincón de Julio" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 overlay"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full">
+        <div class="max-w-2xl text-white">
+            <p class="kicker mb-5" style="color: #F3E9D6;">Sabores de Andalucía</p>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl leading-[1.05] font-semibold">
+                Cocina <span class="italic" style="color: var(--brand);">tradicional</span> de toda la vida
+            </h1>
+            <p class="mt-6 text-lg font-light text-white/90 max-w-xl">
+                Guisos lentos, producto de la tierra y recetas de siempre. Un rincón con encanto donde comer como en casa, con el sabor auténtico del sur.
+            </p>
+            <div class="mt-9 flex flex-wrap gap-4">
+                <a href="tel:+34667880000" class="px-8 py-3.5 text-xs kicker text-white transition-colors" style="background: var(--brand);">Reservar mesa</a>
+                <a href="#carta" class="px-8 py-3.5 text-xs kicker border border-white/70 text-white hover:bg-white/10 transition-colors">Ver la carta</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section id="especialidades" class="py-24 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="kicker" style="color: var(--brand);">Nuestros platos estrella</p>
+            <h2 class="text-4xl sm:text-5xl mt-4 font-semibold">Las especialidades de la casa</h2>
+            <div class="hairline mx-auto mt-6"></div>
+            <p class="mt-6 text-base" style="color: var(--muted);">Los platos por los que vuelven nuestros clientes, elaborados cada día con mimo y sin prisa.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mt-16">
+            <article class="lift bg-[var(--surface)] overflow-hidden rounded-sm group">
+                <div class="overflow-hidden h-64"><img src="comida_1.png" alt="Rabo de toro con patatas a lo pobre" class="img-zoom w-full h-full object-cover"></div>
+                <div class="p-7">
+                    <h3 class="text-2xl font-semibold">Rabo de toro</h3>
+                    <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted);">Estofado lento hasta que la carne se deshace, con su salsa de vino y patatas a lo pobre. Un clásico irrenunciable.</p>
+                </div>
+            </article>
+            <article class="lift bg-[var(--surface)] overflow-hidden rounded-sm group">
+                <div class="overflow-hidden h-64"><img src="comida_2.png" alt="Pulpo a la gallega" class="img-zoom w-full h-full object-cover"></div>
+                <div class="p-7">
+                    <h3 class="text-2xl font-semibold">Pulpo a la gallega</h3>
+                    <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted);">Pulpo tierno sobre cama de patata, con aceite de oliva virgen y un buen golpe de pimentón. Sencillo y perfecto.</p>
+                </div>
+            </article>
+            <article class="lift bg-[var(--surface)] overflow-hidden rounded-sm group">
+                <div class="overflow-hidden h-64"><img src="comida_5.png" alt="Bacalao con pisto de verdura" class="img-zoom w-full h-full object-cover"></div>
+                <div class="p-7">
+                    <h3 class="text-2xl font-semibold">Bacalao con pisto</h3>
+                    <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted);">Lomo de bacalao sobre pisto de verduras de temporada, cocinado a fuego lento. Pura cocina de cuchara.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- LA CASA -->
+<section id="casa" class="py-24 sm:py-28" style="background: var(--surface-2);">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-center">
+        <div class="relative">
+            <img src="fachada_el_rincon_de_julio2.png" alt="Detalle de la entrada de El Rincón de Julio" class="w-full h-[460px] object-cover rounded-sm shadow-xl">
+        </div>
+        <div>
+            <p class="kicker" style="color: var(--brand);">La casa</p>
+            <h2 class="text-4xl sm:text-5xl mt-4 font-semibold leading-tight">Un rincón con alma andaluza</h2>
+            <div class="hairline mt-6"></div>
+            <p class="mt-7 text-base leading-relaxed" style="color: var(--muted);">
+                El Rincón de Julio nace del amor por la cocina de siempre: esa que se hace despacio, con producto bueno y recetas heredadas. Entre flores, mantelitos de cuadros y el bullicio amable de la terraza, aquí se viene a disfrutar sin reloj.
+            </p>
+            <p class="mt-5 text-base leading-relaxed" style="color: var(--muted);">
+                Croquetas caseras como las de la suegra, guisos de cuchara, vinos de la tierra y un trato cercano. Sabores de Andalucía, en estado puro.
+            </p>
+            <div class="mt-9 grid grid-cols-3 gap-6">
+                <div>
+                    <p class="text-4xl font-head font-semibold" style="color: var(--brand);">100%</p>
+                    <p class="text-xs kicker mt-2" style="color: var(--muted);">Casero</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-head font-semibold" style="color: var(--brand);">Cocina</p>
+                    <p class="text-xs kicker mt-2" style="color: var(--muted);">De la tierra</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-head font-semibold" style="color: var(--brand);">Terraza</p>
+                    <p class="text-xs kicker mt-2" style="color: var(--muted);">Con encanto</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CARTA -->
+<section id="carta" class="py-24 sm:py-28">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="kicker" style="color: var(--brand);">Nuestra carta</p>
+            <h2 class="text-4xl sm:text-5xl mt-4 font-semibold">Para compartir y disfrutar</h2>
+            <div class="hairline mx-auto mt-6"></div>
+            <p class="mt-6 text-base" style="color: var(--muted);">Una selección de la carta. Los platos marcados con ★ son nuestras especialidades.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-x-16 gap-y-12 mt-16">
+            <!-- Para abrir boca -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-6 pb-2 border-b" style="border-color: rgba(110,99,84,.25);">Para abrir boca</h3>
+                <ul class="space-y-4 text-[15px]">
+                    <li class="flex justify-between gap-3"><span>Croquetas caseras de la suegra</span><span class="font-medium" style="color: var(--brand);">—</span></li>
+                    <li class="flex justify-between gap-3"><span>Jamón ibérico de cebo</span><span class="font-medium" style="color: var(--brand);">—</span></li>
+                    <li class="flex justify-between gap-3"><span>Huevos estrellados con jamón</span><span class="font-medium" style="color: var(--brand);">18 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Boquerones en vinagre</span><span class="font-medium" style="color: var(--brand);">15 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Salmorejo cordobés</span><span class="font-medium" style="color: var(--brand);">8 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Tortilla de patatas</span><span class="font-medium" style="color: var(--brand);">12 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Queso de oveja viejo</span><span class="font-medium" style="color: var(--brand);">18 €</span></li>
+                </ul>
+            </div>
+            <!-- Carnes -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-6 pb-2 border-b" style="border-color: rgba(110,99,84,.25);">Carnes</h3>
+                <ul class="space-y-4 text-[15px]">
+                    <li class="flex justify-between gap-3"><span>Rabo de toro ★</span><span class="font-medium" style="color: var(--brand);">18 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Plato alpujarreño</span><span class="font-medium" style="color: var(--brand);">20 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Codillo al estilo tradicional ★</span><span class="font-medium" style="color: var(--brand);">20 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Albóndigas de cerdo en salsa</span><span class="font-medium" style="color: var(--brand);">16 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Pollo moruno</span><span class="font-medium" style="color: var(--brand);">16 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Carne en salsa a la antigua usanza</span><span class="font-medium" style="color: var(--brand);">16 €</span></li>
+                </ul>
+            </div>
+            <!-- Pescados -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-6 pb-2 border-b" style="border-color: rgba(110,99,84,.25);">Pescados</h3>
+                <ul class="space-y-4 text-[15px]">
+                    <li class="flex justify-between gap-3"><span>Pulpo a la gallega ★</span><span class="font-medium" style="color: var(--brand);">25 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Bacalao con pisto de verdura ★</span><span class="font-medium" style="color: var(--brand);">20 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Atún de Barbate</span><span class="font-medium" style="color: var(--brand);">19 €</span></li>
+                </ul>
+            </div>
+            <!-- Ensaladas -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-6 pb-2 border-b" style="border-color: rgba(110,99,84,.25);">Ensaladas</h3>
+                <ul class="space-y-4 text-[15px]">
+                    <li class="flex justify-between gap-3"><span>Cogollos con anchoas del Cantábrico</span><span class="font-medium" style="color: var(--brand);">18 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Tomate con ventresca de atún</span><span class="font-medium" style="color: var(--brand);">16 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Remojón granadino</span><span class="font-medium" style="color: var(--brand);">11 €</span></li>
+                    <li class="flex justify-between gap-3"><span>Ensalada de patatas aliñadas</span><span class="font-medium" style="color: var(--brand);">14 €</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center mt-14">
+            <a href="Carta_restaurante.png" target="_blank" class="inline-block px-8 py-3.5 text-xs kicker text-white transition-colors" style="background: var(--accent);">Ver carta completa</a>
+        </div>
+    </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" class="py-24 sm:py-28" style="background: var(--surface-2);">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="kicker" style="color: var(--brand);">Galería</p>
+            <h2 class="text-4xl sm:text-5xl mt-4 font-semibold">Lo que sale de la cocina</h2>
+            <div class="hairline mx-auto mt-6"></div>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-14">
+            <div class="group overflow-hidden rounded-sm h-72 sm:h-80"><img src="comida_1.png" alt="Rabo de toro" class="img-zoom w-full h-full object-cover"></div>
+            <div class="group overflow-hidden rounded-sm h-72 sm:h-80"><img src="comida_2.png" alt="Pulpo a la gallega" class="img-zoom w-full h-full object-cover"></div>
+            <div class="group overflow-hidden rounded-sm h-72 sm:h-80"><img src="comida_3.png" alt="Croquetas caseras" class="img-zoom w-full h-full object-cover"></div>
+            <div class="group overflow-hidden rounded-sm h-72 sm:h-80"><img src="Comida_4.png" alt="Plato alpujarreño" class="img-zoom w-full h-full object-cover"></div>
+            <div class="group overflow-hidden rounded-sm h-72 sm:h-80"><img src="comida_5.png" alt="Bacalao con pisto de verdura" class="img-zoom w-full h-full object-cover"></div>
+            <div class="group overflow-hidden rounded-sm h-72 sm:h-80"><img src="fachada_el_rincon_de_julio.png" alt="Terraza de El Rincón de Julio" class="img-zoom w-full h-full object-cover"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="py-24 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14">
+        <div>
+            <p class="kicker" style="color: var(--brand);">Reservas y contacto</p>
+            <h2 class="text-4xl sm:text-5xl mt-4 font-semibold leading-tight">Te guardamos mesa</h2>
+            <div class="hairline mt-6"></div>
+            <p class="mt-7 text-base leading-relaxed" style="color: var(--muted);">Reserva por teléfono y te atendemos al momento. Para grupos grandes, mejor con un poco de antelación.</p>
+
+            <div class="mt-9 space-y-6">
+                <div class="flex items-start gap-4">
+                    <span class="mt-1 text-xl" style="color: var(--brand);">&#9742;</span>
+                    <div>
+                        <p class="text-xs kicker" style="color: var(--muted);">Teléfono / Reservas</p>
+                        <a href="tel:+34667880000" class="text-lg font-medium hover:underline">667 88 00 00</a>
+                        <p class="text-xs mt-1" style="color: var(--muted);">(confírmame el número correcto)</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <span class="mt-1 text-xl" style="color: var(--brand);">&#9737;</span>
+                    <div>
+                        <p class="text-xs kicker" style="color: var(--muted);">Dirección</p>
+                        <p class="text-lg font-medium">Granada (pendiente de confirmar)</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <span class="mt-1 text-xl" style="color: var(--brand);">&#9788;</span>
+                    <div>
+                        <p class="text-xs kicker" style="color: var(--muted);">Horario</p>
+                        <p class="text-lg font-medium">Pendiente de confirmar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rounded-sm overflow-hidden shadow-xl min-h-[360px]">
+            <iframe
+                title="Ubicación de El Rincón de Julio"
+                src="https://www.google.com/maps?q=El+Rinc%C3%B3n+de+Julio+Granada&output=embed"
+                class="w-full h-full min-h-[360px] border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="mt-auto py-12 border-t" style="background: var(--text); color: #F3E9D6; border-color: rgba(243,233,214,.15);">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+            <p class="font-head text-2xl font-semibold">El Rincón de <span style="color: var(--brand);">Julio</span></p>
+            <p class="text-sm mt-1 opacity-70">Sabores de Andalucía</p>
+        </div>
+        <div class="flex items-center gap-8 text-sm opacity-80">
+            <a href="#especialidades" class="hover:opacity-100">Especialidades</a>
+            <a href="#carta" class="hover:opacity-100">Carta</a>
+            <a href="#contacto" class="hover:opacity-100">Contacto</a>
+        </div>
+        <p class="text-xs opacity-50">© <span id="year"></span> El Rincón de Julio</p>
+    </div>
+</footer>
+
+<script>
+    // Menú móvil
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+
+    // Nav: fondo sólido al hacer scroll
+    const nav = document.getElementById('nav');
+    const navLinks = document.getElementById('nav-links');
+    const brandLink = document.getElementById('brand-link');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    function onScroll() {
+        if (window.scrollY > 40) {
+            nav.style.background = 'var(--bg)';
+            nav.style.boxShadow = '0 8px 24px -16px rgba(30,20,14,.45)';
+            navLinks.style.color = 'var(--text)';
+            brandLink.style.color = 'var(--text)';
+            menuBtn.style.color = 'var(--text)';
+        } else {
+            nav.style.background = 'transparent';
+            nav.style.boxShadow = 'none';
+            navLinks.style.color = '#fff';
+            brandLink.style.color = '#fff';
+            menuBtn.style.color = '#fff';
+        }
+    }
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
